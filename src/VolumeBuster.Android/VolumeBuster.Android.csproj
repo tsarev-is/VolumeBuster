@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0-android</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <!-- 26: the adaptive vector icon is enough, no PNG fallbacks for older launchers. -->
+        <SupportedOSPlatformVersion>26</SupportedOSPlatformVersion>
+        <ApplicationId>app.volumebuster</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
+        <AndroidManifest>AndroidManifest.xml</AndroidManifest>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <!-- arm64 for the phone, x64 for the emulator. -->
+        <RuntimeIdentifiers>android-arm64;android-x64</RuntimeIdentifiers>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
+        <!-- Keystore lives outside the repository (~/.android); without it the build falls back to the debug key. -->
+        <VolumeBusterKeyStore>$(HOME)/.android/volumebuster-release.keystore</VolumeBusterKeyStore>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' And Exists('$(VolumeBusterKeyStore)')">
+        <AndroidKeyStore>true</AndroidKeyStore>
+        <AndroidSigningKeyStore>$(VolumeBusterKeyStore)</AndroidSigningKeyStore>
+        <AndroidSigningKeyAlias>volumebuster</AndroidSigningKeyAlias>
+        <AndroidSigningStorePass>file:$(HOME)/.android/volumebuster-release.pass</AndroidSigningStorePass>
+        <AndroidSigningKeyPass>file:$(HOME)/.android/volumebuster-release.keypass</AndroidSigningKeyPass>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\VolumeBuster\VolumeBuster.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Android" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project>
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
+    </PropertyGroup>
+
+    <!-- Default Android SDK and JDK when they sit in the usual places; explicit -p: values still win. -->
+    <PropertyGroup>
+        <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == '' And '$(ANDROID_SDK_ROOT)' != ''">$(ANDROID_SDK_ROOT)</AndroidSdkDirectory>
+        <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == '' And Exists('$(HOME)/Android/Sdk')">$(HOME)/Android/Sdk</AndroidSdkDirectory>
+        <JavaSdkDirectory Condition="'$(JavaSdkDirectory)' == '' And Exists('/usr/lib/jvm/java-21-openjdk')">/usr/lib/jvm/java-21-openjdk</JavaSdkDirectory>
+    </PropertyGroup>
+</Project>

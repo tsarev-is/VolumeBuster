@@ -1,0 +1,15 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VolumeBuster.App"
+             RequestedThemeVariant="Default">
+
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <!-- Explicit accent so Android 12+ wallpaper colours never repaint the app; RegionColor matches the launch window. -->
+                <ColorPaletteResources x:Key="Light" Accent="#B3401A" RegionColor="#FAF7F5" />
+                <ColorPaletteResources x:Key="Dark" Accent="#FFB595" RegionColor="#161211" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+    </Application.Styles>
+</Application>

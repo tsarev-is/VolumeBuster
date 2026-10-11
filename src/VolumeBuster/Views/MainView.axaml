@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VolumeBuster.ViewModels"
+             x:Class="VolumeBuster.Views.MainView"
+             x:DataType="vm:MainViewModel"
+             Background="{DynamicResource SystemRegionBrush}">
+    <StackPanel Margin="24" Spacing="24" VerticalAlignment="Center">
+        <TextBlock Text="Усиление громкости" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" />
+
+        <TextBlock Text="{Binding GainText}" FontSize="48" HorizontalAlignment="Center" />
+
+        <Slider Minimum="0" Maximum="100" Value="{Binding Level}" IsEnabled="{Binding IsSupported}"
+                AutomationProperties.Name="Сила усиления" />
+
+        <ToggleSwitch IsChecked="{Binding IsEnabled}" IsEnabled="{Binding IsSupported}" HorizontalAlignment="Center"
+                      OnContent="Усиление включено" OffContent="Усиление выключено" />
+
+        <TextBlock IsVisible="{Binding !IsSupported}" TextWrapping="Wrap" TextAlignment="Center"
+                   Text="Это устройство не даёт усиливать общий звук." />
+
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7"
+                   Text="Сильное усиление искажает звук и может повредить динамик и слух." />
+    </StackPanel>
+</UserControl>
