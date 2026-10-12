@@ -1,28 +1,84 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+defaults:
+  run:
+    working-directory: src
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    name: Build and test
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+          workloads: android
+
+      - name: Restore
+        run: dotnet restore VolumeBuster.sln
+
+      - name: Build
+        run: dotnet build VolumeBuster.sln --no-restore -p:JavaSdkDirectory="$JAVA_HOME_21_X64"
+
+      - name: Test
+        run: dotnet test VolumeBuster.Tests --no-build
+
+  tag:
+    name: Tag release
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v7
+
+      # The newest version in CHANGELOG.md gets its v-tag on the first green commit that carries it.
+      - name: Tag the latest changelog version
+        run: |
+          version=$(grep -m1 -oP '^## \[\K(?!Unreleased\])[^]]+' CHANGELOG.md || true)
+          if [ -z "$version" ]; then
+            echo "CHANGELOG.md has no released version yet."
+            exit 0
+          fi
+
+          tag="v$version"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" > /dev/null; then
+            echo "Tag $tag already exists."
+            exit 0
+          fi
+
+          app_version=$(grep -oP '<ApplicationDisplayVersion>\K[^<]+' src/VolumeBuster.Android/VolumeBuster.Android.csproj || true)
+          if [ "$app_version" != "$version" ]; then
+            echo "::error file=CHANGELOG.md::CHANGELOG.md is at $version, but ApplicationDisplayVersion is $app_version."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$tag" -m "VolumeBuster $version"
+          git push origin "$tag"
+          echo "Created tag $tag."
