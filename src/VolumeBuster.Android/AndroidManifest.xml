@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- The only permission: an audio effect on the global output. No network, so no ads and no analytics. -->
+    <!-- Attaching an audio effect to the global output mix (audio session 0). -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <application android:label="VolumeBuster" android:allowBackup="false" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon" />
+    <!-- The effect lives as long as the process: a foreground service keeps it alive while other apps play. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- No POST_NOTIFICATIONS on purpose: Android 13+ then keeps the service's notification out of the shade
+         and lists the app only under "Active apps"; the service runs all the same. -->
+    <!-- No network permission: no ads, no analytics, nothing leaves the device. -->
+
+    <!-- localeConfig: Android 13+ lets the user give the app its own language; it follows the system by default. -->
+    <application android:label="VolumeBuster" android:allowBackup="false" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon"
+                 android:localeConfig="@xml/locales_config">
+        <!-- No predefined type fits an app that processes, but does not play, audio; hence specialUse with an explanation. -->
+        <service android:name="app.volumebuster.BoostForegroundService"
+                 android:exported="false"
+                 android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                      android:value="Keeps a user-enabled gain effect on the device's media output alive while other apps play audio. Stops when the user turns the boost off." />
+        </service>
+    </application>
 </manifest>

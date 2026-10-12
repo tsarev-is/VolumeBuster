@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>net10.0-android</TargetFramework>
         <OutputType>Exe</OutputType>
-        <!-- 26: the adaptive vector icon is enough, no PNG fallbacks for older launchers. -->
-        <SupportedOSPlatformVersion>26</SupportedOSPlatformVersion>
+        <!-- Android 12+: tested target range is Android 12–16. -->
+        <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
         <ApplicationId>app.volumebuster</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
@@ -36,5 +36,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Android" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
     </ItemGroup>
 </Project>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="VolumeTitle" xml:space="preserve">
+        <value>Громкость</value>
+    </data>
+    <data name="BoostLevelName" xml:space="preserve">
+        <value>Сила усиления</value>
+    </data>
+    <data name="BoostSwitchName" xml:space="preserve">
+        <value>Усиление громкости</value>
+    </data>
+    <data name="BassTitle" xml:space="preserve">
+        <value>Басы</value>
+    </data>
+    <data name="BassLevelName" xml:space="preserve">
+        <value>Уровень басов</value>
+    </data>
+    <data name="DecibelUnit" xml:space="preserve">
+        <value>дБ</value>
+    </data>
+    <data name="PercentFormat" xml:space="preserve">
+        <value>{0:0}&#160;%</value>
+    </data>
+    <data name="GainDecibelsFormat" xml:space="preserve">
+        <value>+{0:0.0}&#160;дБ</value>
+    </data>
+    <data name="LoudnessWarning" xml:space="preserve">
+        <value>Громкий звук может повредить слух и динамик. Начинайте с небольшого усиления.</value>
+    </data>
+    <data name="LoudnessWarningAcknowledge" xml:space="preserve">
+        <value>Понятно</value>
+    </data>
+    <data name="EqualizerTitle" xml:space="preserve">
+        <value>Эквалайзер</value>
+    </data>
+    <data name="EqualizerBandsName" xml:space="preserve">
+        <value>Полосы эквалайзера</value>
+    </data>
+    <data name="EqualizerPresetName" xml:space="preserve">
+        <value>Пресет эквалайзера</value>
+    </data>
+    <data name="EqualizerFiveBands" xml:space="preserve">
+        <value>5 полос</value>
+    </data>
+    <data name="EqualizerSevenBands" xml:space="preserve">
+        <value>7 полос</value>
+    </data>
+    <data name="EqualizerTenBands" xml:space="preserve">
+        <value>10 полос</value>
+    </data>
+
+    <data name="EqualizerPresetFlat" xml:space="preserve">
+        <value>Ровный</value>
+    </data>
+    <data name="EqualizerPresetAcoustic" xml:space="preserve">
+        <value>Акустика</value>
+    </data>
+    <data name="EqualizerPresetClassical" xml:space="preserve">
+        <value>Классика</value>
+    </data>
+    <data name="EqualizerPresetJazz" xml:space="preserve">
+        <value>Джаз</value>
+    </data>
+    <data name="EqualizerPresetPop" xml:space="preserve">
+        <value>Поп</value>
+    </data>
+    <data name="EqualizerPresetRock" xml:space="preserve">
+        <value>Рок</value>
+    </data>
+    <data name="EqualizerPresetHipHop" xml:space="preserve">
+        <value>Хип-хоп</value>
+    </data>
+    <data name="EqualizerPresetDance" xml:space="preserve">
+        <value>Танцевальная</value>
+    </data>
+    <data name="EqualizerPresetVocal" xml:space="preserve">
+        <value>Голос</value>
+    </data>
+    <data name="EqualizerPresetCustom" xml:space="preserve">
+        <value>Свой</value>
+    </data>
+
+    <data name="DiagnosticsTitle" xml:space="preserve">
+        <value>Диагностика</value>
+    </data>
+    <data name="DiagnosticsOutput" xml:space="preserve">
+        <value>Вывод</value>
+    </data>
+    <data name="DiagnosticsVolume" xml:space="preserve">
+        <value>Громкость</value>
+    </data>
+    <data name="DiagnosticsEffect" xml:space="preserve">
+        <value>Эффект</value>
+    </data>
+    <data name="DiagnosticsGain" xml:space="preserve">
+        <value>Усиление</value>
+    </data>
+    <data name="DiagnosticsSystemEffects" xml:space="preserve">
+        <value>Эффекты ОС</value>
+    </data>
+    <data name="DiagnosticsSystem" xml:space="preserve">
+        <value>Система</value>
+    </data>
+    <data name="DiagnosticsDevice" xml:space="preserve">
+        <value>Устройство</value>
+    </data>
+    <data name="MediaVolumeFormat" xml:space="preserve">
+        <value>{0} из {1}</value>
+    </data>
+    <data name="EffectFormat" xml:space="preserve">
+        <value>{0}, общий выход (session 0)</value>
+    </data>
+    <data name="GainDetailsFormat" xml:space="preserve">
+        <value>{0:+0.00;-0.00;0.00} дБ, ×{1:0.00} по амплитуде</value>
+    </data>
+
+    <data name="ProblemUnsupported" xml:space="preserve">
+        <value>Устройство не позволяет обрабатывать общий звук.</value>
+    </data>
+    <data name="ProblemRetryingFormat" xml:space="preserve">
+        <value>{0} Пробую восстановить…</value>
+    </data>
+    <data name="ProblemUnknown" xml:space="preserve">
+        <value>Неизвестная ошибка.</value>
+    </data>
+    <data name="ToneUnsupportedFormat" xml:space="preserve">
+        <value>{0} меняет только громкость: эквалайзер и басы на этом устройстве недоступны.</value>
+    </data>
+</root>

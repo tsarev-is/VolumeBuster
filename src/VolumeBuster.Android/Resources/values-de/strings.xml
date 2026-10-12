@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_label">Verstärkung</string>
+    <string name="tile_active">%1$s&#160;%%</string>
+    <string name="tile_off">Aus</string>
+    <string name="tile_error">Fehler</string>
+    <string name="tile_unsupported">Nicht unterstützt</string>
+
+    <string name="notification_channel_name">Hintergrundbetrieb</string>
+    <string name="notification_channel_description">Android verlangt eine Benachrichtigung, solange die App den Ton im Hintergrund bearbeitet.</string>
+    <string name="notification_turn_off">Ausschalten</string>
+    <string name="notification_boost_error">Verstärkung: Fehler</string>
+    <string name="notification_tone_error">Equalizer: Fehler</string>
+    <string name="notification_recovering">Effekt wird wiederhergestellt…</string>
+    <string name="notification_boost">Verstärkung %1$s&#160;%% (+%2$s&#160;dB)</string>
+    <string name="notification_bass">Bass %1$s&#160;dB</string>
+    <string name="notification_equalizer">Equalizer „%1$s“</string>
+    <string name="notification_connecting">Effekt wird verbunden…</string>
+    <string name="notification_processing">Der Ton aller Apps wird bearbeitet. „Ausschalten“ stellt den normalen Ton wieder her.</string>
+
+    <string name="route_phone_speaker">Telefonlautsprecher</string>
+    <string name="route_earpiece">Hörmuschel</string>
+    <string name="route_bluetooth_sco">Bluetooth (Headset, Anrufmodus)</string>
+    <string name="route_wired_headphones">Kabelgebundene Kopfhörer</string>
+    <string name="route_usb">USB-Audio</string>
+    <string name="route_remote_submix">Audioaufnahme (Remote Submix)</string>
+    <string name="effects_none">keine passenden Effekte</string>
+    <string name="effects_unknown">unbekannt</string>
+
+    <string name="effect_controlled_elsewhere">Eine andere App (Equalizer oder Verstärker) steuert bereits den systemweiten Ton. Schalten Sie deren Effekte aus und versuchen Sie es erneut.</string>
+    <string name="effect_unavailable">Das Gerät erlaubt keine Effekte auf dem globalen Medienausgang (%1$s).</string>
+</resources>

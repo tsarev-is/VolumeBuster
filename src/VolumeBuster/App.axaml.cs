@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using VolumeBuster.Platform;
+using Microsoft.Extensions.DependencyInjection;
 using VolumeBuster.ViewModels;
 using VolumeBuster.Views;
 
@@ -10,9 +10,9 @@ namespace VolumeBuster;
 public partial class App : Application
 {
     /// <summary>
-    /// Volume boost provided by the Android host before Avalonia starts.
+    /// Container built by the platform host before Avalonia starts.
     /// </summary>
-    public static IVolumeBooster? Booster { get; set; }
+    public static IServiceProvider? Services { get; set; }
 
     public override void Initialize()
     {
@@ -21,12 +21,12 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        var booster = Booster ?? throw new InvalidOperationException("App.Booster must be set by the host.");
-        var shell = new MainViewModel(booster);
+        var services = Services ?? throw new InvalidOperationException("App.Services must be set by the host.");
 
         if (ApplicationLifetime is IActivityApplicationLifetime activityLifetime)
         {
-            activityLifetime.MainViewFactory = () => new MainView { DataContext = shell };
+            // The view model is a singleton: a recreated activity gets the same state.
+            activityLifetime.MainViewFactory = () => new MainView { DataContext = services.GetRequiredService<MainViewModel>() };
         }
 
         base.OnFrameworkInitializationCompleted();

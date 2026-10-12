@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texts of the platform code: the tile, the service notification, the diagnostics. The screen's own texts live in
+     VolumeBuster/Localization/Strings*.resx. Numbers arrive already formatted, hence %1$s throughout. -->
+<resources>
+    <!-- Quick Settings tile -->
+    <string name="tile_label">Boost</string>
+    <string name="tile_active">%1$s%%</string>
+    <string name="tile_off">Off</string>
+    <string name="tile_error">Error</string>
+    <string name="tile_unsupported">Not supported</string>
+
+    <!-- Foreground service notification -->
+    <string name="notification_channel_name">Background work</string>
+    <string name="notification_channel_description">Android requires a notification while the app processes sound in the background.</string>
+    <string name="notification_turn_off">Turn off</string>
+    <string name="notification_boost_error">Boost: error</string>
+    <string name="notification_tone_error">Equalizer: error</string>
+    <string name="notification_recovering">Trying to restore the effect…</string>
+    <string name="notification_boost">Boost %1$s%% (+%2$s&#160;dB)</string>
+    <string name="notification_bass">Bass %1$s&#160;dB</string>
+    <string name="notification_equalizer">Equalizer “%1$s”</string>
+    <string name="notification_connecting">Connecting the effect…</string>
+    <string name="notification_processing">The sound of all apps is being processed. “Turn off” brings back the normal sound.</string>
+
+    <!-- Diagnostics: where the sound goes and what the system offers -->
+    <string name="route_phone_speaker">Phone speaker</string>
+    <string name="route_earpiece">Earpiece</string>
+    <string name="route_bluetooth_sco">Bluetooth (headset, call mode)</string>
+    <string name="route_wired_headphones">Wired headphones</string>
+    <string name="route_usb">USB audio</string>
+    <string name="route_remote_submix">Audio capture (remote submix)</string>
+    <string name="effects_none">no suitable effects</string>
+    <string name="effects_unknown">unknown</string>
+
+    <!-- Why the effect could not be attached -->
+    <string name="effect_controlled_elsewhere">Another app (an equalizer or a booster) already controls the system-wide sound. Turn off its effects and try again.</string>
+    <string name="effect_unavailable">The device does not allow effects on the global media output (%1$s).</string>
+</resources>

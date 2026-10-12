@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tile_label">Усиление</string>
+    <string name="tile_active">%1$s&#160;%%</string>
+    <string name="tile_off">Выключено</string>
+    <string name="tile_error">Ошибка</string>
+    <string name="tile_unsupported">Не поддерживается</string>
+
+    <string name="notification_channel_name">Работа в фоне</string>
+    <string name="notification_channel_description">Android требует уведомление, пока приложение обрабатывает звук в фоне.</string>
+    <string name="notification_turn_off">Выключить</string>
+    <string name="notification_boost_error">Усиление: ошибка</string>
+    <string name="notification_tone_error">Эквалайзер: ошибка</string>
+    <string name="notification_recovering">Пробую восстановить эффект…</string>
+    <string name="notification_boost">Усиление %1$s&#160;%% (+%2$s&#160;дБ)</string>
+    <string name="notification_bass">Басы %1$s&#160;дБ</string>
+    <string name="notification_equalizer">Эквалайзер «%1$s»</string>
+    <string name="notification_connecting">Подключаю эффект…</string>
+    <string name="notification_processing">Звук всех приложений обрабатывается. «Выключить» вернёт обычный звук.</string>
+
+    <string name="route_phone_speaker">Динамик телефона</string>
+    <string name="route_earpiece">Разговорный динамик</string>
+    <string name="route_bluetooth_sco">Bluetooth (гарнитура, режим звонка)</string>
+    <string name="route_wired_headphones">Проводные наушники</string>
+    <string name="route_usb">USB-аудио</string>
+    <string name="route_remote_submix">Захват звука (remote submix)</string>
+    <string name="effects_none">нет подходящих эффектов</string>
+    <string name="effects_unknown">неизвестно</string>
+
+    <string name="effect_controlled_elsewhere">Общим звуком уже управляет другое приложение (эквалайзер или усилитель). Отключите его эффекты и попробуйте снова.</string>
+    <string name="effect_unavailable">Устройство не разрешает эффекты на общем выходе медиа (%1$s).</string>
+</resources>

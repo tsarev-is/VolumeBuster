@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="VolumeTitle" xml:space="preserve">
+        <value>Volume</value>
+    </data>
+    <data name="BoostLevelName" xml:space="preserve">
+        <value>Boost level</value>
+        <comment>Screen reader name of the volume dial.</comment>
+    </data>
+    <data name="BoostSwitchName" xml:space="preserve">
+        <value>Volume boost</value>
+        <comment>Screen reader name of the volume switch.</comment>
+    </data>
+    <data name="BassTitle" xml:space="preserve">
+        <value>Bass</value>
+    </data>
+    <data name="BassLevelName" xml:space="preserve">
+        <value>Bass level</value>
+        <comment>Screen reader name of the bass dial.</comment>
+    </data>
+    <data name="DecibelUnit" xml:space="preserve">
+        <value>dB</value>
+    </data>
+    <data name="PercentFormat" xml:space="preserve">
+        <value>{0:0}%</value>
+        <comment>{0}: volume percentage. Use a non-breaking space where the language puts a space before the sign.</comment>
+    </data>
+    <data name="GainDecibelsFormat" xml:space="preserve">
+        <value>+{0:0.0}&#160;dB</value>
+        <comment>{0}: gain in decibels, under the volume percentage.</comment>
+    </data>
+    <data name="LoudnessWarning" xml:space="preserve">
+        <value>Loud sound can damage your hearing and the speaker. Start with a small boost.</value>
+    </data>
+    <data name="LoudnessWarningAcknowledge" xml:space="preserve">
+        <value>Got it</value>
+    </data>
+    <data name="EqualizerTitle" xml:space="preserve">
+        <value>Equalizer</value>
+    </data>
+    <data name="EqualizerBandsName" xml:space="preserve">
+        <value>Equalizer bands</value>
+        <comment>Screen reader name of the band sliders.</comment>
+    </data>
+    <data name="EqualizerPresetName" xml:space="preserve">
+        <value>Equalizer preset</value>
+        <comment>Screen reader name of the preset drop-down.</comment>
+    </data>
+    <data name="EqualizerFiveBands" xml:space="preserve">
+        <value>5 bands</value>
+    </data>
+    <data name="EqualizerSevenBands" xml:space="preserve">
+        <value>7 bands</value>
+    </data>
+    <data name="EqualizerTenBands" xml:space="preserve">
+        <value>10 bands</value>
+    </data>
+
+    <data name="EqualizerPresetFlat" xml:space="preserve">
+        <value>Flat</value>
+    </data>
+    <data name="EqualizerPresetAcoustic" xml:space="preserve">
+        <value>Acoustic</value>
+    </data>
+    <data name="EqualizerPresetClassical" xml:space="preserve">
+        <value>Classical</value>
+    </data>
+    <data name="EqualizerPresetJazz" xml:space="preserve">
+        <value>Jazz</value>
+    </data>
+    <data name="EqualizerPresetPop" xml:space="preserve">
+        <value>Pop</value>
+    </data>
+    <data name="EqualizerPresetRock" xml:space="preserve">
+        <value>Rock</value>
+    </data>
+    <data name="EqualizerPresetHipHop" xml:space="preserve">
+        <value>Hip-hop</value>
+    </data>
+    <data name="EqualizerPresetDance" xml:space="preserve">
+        <value>Dance</value>
+    </data>
+    <data name="EqualizerPresetVocal" xml:space="preserve">
+        <value>Voice</value>
+        <comment>Preset for speech: podcasts, audiobooks, videos.</comment>
+    </data>
+    <data name="EqualizerPresetCustom" xml:space="preserve">
+        <value>Custom</value>
+        <comment>The user's own curve, set by moving the band sliders.</comment>
+    </data>
+
+    <data name="DiagnosticsTitle" xml:space="preserve">
+        <value>Diagnostics</value>
+    </data>
+    <data name="DiagnosticsOutput" xml:space="preserve">
+        <value>Output</value>
+    </data>
+    <data name="DiagnosticsVolume" xml:space="preserve">
+        <value>Volume</value>
+        <comment>The system media volume.</comment>
+    </data>
+    <data name="DiagnosticsEffect" xml:space="preserve">
+        <value>Effect</value>
+    </data>
+    <data name="DiagnosticsGain" xml:space="preserve">
+        <value>Gain</value>
+    </data>
+    <data name="DiagnosticsSystemEffects" xml:space="preserve">
+        <value>System effects</value>
+    </data>
+    <data name="DiagnosticsSystem" xml:space="preserve">
+        <value>System</value>
+    </data>
+    <data name="DiagnosticsDevice" xml:space="preserve">
+        <value>Device</value>
+    </data>
+    <data name="MediaVolumeFormat" xml:space="preserve">
+        <value>{0} of {1}</value>
+        <comment>{0}: current media volume step, {1}: highest step.</comment>
+    </data>
+    <data name="EffectFormat" xml:space="preserve">
+        <value>{0}, global output (session 0)</value>
+        <comment>{0}: name of the platform effect, e.g. "Dynamics Processing".</comment>
+    </data>
+    <data name="GainDetailsFormat" xml:space="preserve">
+        <value>{0:+0.00;-0.00;0.00} dB, ×{1:0.00} in amplitude</value>
+        <comment>{0}: gain in decibels, {1}: the same as an amplitude factor.</comment>
+    </data>
+
+    <data name="ProblemUnsupported" xml:space="preserve">
+        <value>This device does not allow processing the system-wide sound.</value>
+    </data>
+    <data name="ProblemRetryingFormat" xml:space="preserve">
+        <value>{0} Trying to recover…</value>
+        <comment>{0}: what went wrong, a full sentence.</comment>
+    </data>
+    <data name="ProblemUnknown" xml:space="preserve">
+        <value>Unknown error.</value>
+    </data>
+    <data name="ToneUnsupportedFormat" xml:space="preserve">
+        <value>{0} changes only the volume: the equalizer and bass are not available on this device.</value>
+        <comment>{0}: name of the platform effect, e.g. "Loudness Enhancer".</comment>
+    </data>
+</root>
