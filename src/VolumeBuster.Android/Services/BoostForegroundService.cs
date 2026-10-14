@@ -20,11 +20,11 @@ namespace VolumeBuster.Android.Services;
 /// The service stops itself as soon as the boost, the equalizer and the bass level are all switched off.
 /// Its notification is required by Android but stays hidden, see <see cref="BoostNotifications"/>.
 /// </remarks>
-[Service(Name = "app.volumebuster.BoostForegroundService", Exported = false)]
+[Service(Name = "com.volumex.BoostForegroundService", Exported = false)]
 public sealed class BoostForegroundService : Service
 {
-    public const string ActionStart = "app.volumebuster.action.START";
-    public const string ActionStop = "app.volumebuster.action.STOP";
+    public const string ActionStart = "com.volumex.action.START";
+    public const string ActionStop = "com.volumex.action.STOP";
 
     private IAudioBoostService? _boost;
     private ILogger<BoostForegroundService>? _logger;

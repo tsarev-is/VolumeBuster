@@ -8,7 +8,7 @@ using VolumeBuster.Diagnostics;
 namespace VolumeBuster.Android;
 
 [Activity(
-    Label = "VolumeBuster",
+    Label = "VolumeX",
     Theme = "@style/AppTheme",
     MainLauncher = true,
     LaunchMode = LaunchMode.SingleTop,

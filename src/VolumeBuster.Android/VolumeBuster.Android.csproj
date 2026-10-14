@@ -4,7 +4,7 @@
         <OutputType>Exe</OutputType>
         <!-- Android 12+: tested target range is Android 12–16. -->
         <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
-        <ApplicationId>app.volumebuster</ApplicationId>
+        <ApplicationId>com.volumex</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
         <AndroidManifest>AndroidManifest.xml</AndroidManifest>
@@ -19,15 +19,15 @@
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
         <RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
         <AndroidPackageFormats>aab;apk</AndroidPackageFormats>
-        <VolumeBusterKeyStore>$(HOME)/.android/volumebuster-release.keystore</VolumeBusterKeyStore>
+        <VolumeBusterKeyStore>$(HOME)/.android/volumebuster-upload.keystore</VolumeBusterKeyStore>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release' And Exists('$(VolumeBusterKeyStore)')">
         <AndroidKeyStore>true</AndroidKeyStore>
         <AndroidSigningKeyStore>$(VolumeBusterKeyStore)</AndroidSigningKeyStore>
-        <AndroidSigningKeyAlias>volumebuster</AndroidSigningKeyAlias>
-        <AndroidSigningStorePass>file:$(HOME)/.android/volumebuster-release.pass</AndroidSigningStorePass>
-        <AndroidSigningKeyPass>file:$(HOME)/.android/volumebuster-release.keypass</AndroidSigningKeyPass>
+        <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
+        <AndroidSigningStorePass>file:$(HOME)/.android/volumebuster-upload.pass</AndroidSigningStorePass>
+        <AndroidSigningKeyPass>file:$(HOME)/.android/volumebuster-upload.pass</AndroidSigningKeyPass>
     </PropertyGroup>
 
     <Target Name="WarnDebugSignedRelease" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release' And '$(AndroidKeyStore)' != 'true'">

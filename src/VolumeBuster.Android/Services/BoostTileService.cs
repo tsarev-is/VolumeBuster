@@ -12,7 +12,7 @@ namespace VolumeBuster.Android.Services;
 /// Quick Settings tile: switches the boost on and off without opening the app.
 /// </summary>
 [Service(
-    Name = "app.volumebuster.BoostTileService",
+    Name = "com.volumex.BoostTileService",
     Exported = true,
     Label = "@string/tile_label",
     Icon = "@drawable/ic_notification",

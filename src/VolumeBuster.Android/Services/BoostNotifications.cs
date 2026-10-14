@@ -127,7 +127,7 @@ internal static class BoostNotifications
         }
 
         return parts.Count == 0
-            ? ("VolumeBuster", context.GetString(Resource.String.notification_connecting))
+            ? ("VolumeX", context.GetString(Resource.String.notification_connecting))
             : (string.Join(" · ", parts), context.GetString(Resource.String.notification_processing));
     }
 

@@ -10,10 +10,10 @@
     <!-- No network permission: no ads, no analytics, nothing leaves the device. -->
 
     <!-- localeConfig: Android 13+ lets the user give the app its own language; it follows the system by default. -->
-    <application android:label="VolumeBuster" android:allowBackup="false" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon"
+    <application android:label="VolumeX" android:allowBackup="false" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon"
                  android:localeConfig="@xml/locales_config">
         <!-- No predefined type fits an app that processes, but does not play, audio; hence specialUse with an explanation. -->
-        <service android:name="app.volumebuster.BoostForegroundService"
+        <service android:name="com.volumex.BoostForegroundService"
                  android:exported="false"
                  android:foregroundServiceType="specialUse">
             <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
