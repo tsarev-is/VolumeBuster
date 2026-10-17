@@ -1,0 +1,328 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VolumeX.ViewModels"
+             xmlns:audio="using:VolumeX.Audio"
+             xmlns:views="using:VolumeX.Views"
+             xmlns:loc="using:VolumeX.Localization"
+             x:Class="VolumeX.Views.MainView"
+             x:DataType="vm:MainViewModel"
+             Background="{DynamicResource SystemRegionBrush}">
+    <UserControl.Styles>
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="24" />
+            <Setter Property="Padding" Value="18,14,18,18" />
+            <Setter Property="BoxShadow" Value="0 1 2 0 #0F000000" />
+        </Style>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TextBlock.muted">
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        </Style>
+        <!-- An Android-style switch: outlined track with a small knob when off, filled with a large knob when on -->
+        <Style Selector="ToggleButton.switch">
+            <Setter Property="Width" Value="52" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{DynamicResource SwitchTrackOffBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SwitchOutlineBrush}" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="2" CornerRadius="16">
+                        <Ellipse Name="knob" Width="16" Height="16" Margin="6,0,0,0" HorizontalAlignment="Left"
+                                 VerticalAlignment="Center" Fill="{DynamicResource SwitchOutlineBrush}">
+                            <Ellipse.Transitions>
+                                <Transitions>
+                                    <ThicknessTransition Property="Margin" Duration="0:0:0.15" />
+                                    <DoubleTransition Property="Width" Duration="0:0:0.15" />
+                                    <DoubleTransition Property="Height" Duration="0:0:0.15" />
+                                </Transitions>
+                            </Ellipse.Transitions>
+                        </Ellipse>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.switch:checked">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        </Style>
+        <Style Selector="ToggleButton.switch:checked /template/ Ellipse#knob">
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Margin" Value="22,0,0,0" />
+            <Setter Property="Fill" Value="{DynamicResource SegmentSelectedTextBrush}" />
+        </Style>
+
+        <!-- "Diagnostics ⌄" at the bottom: quiet, opens a card below -->
+        <Style Selector="ToggleButton.disclosure">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="16,10" />
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="Transparent" Padding="{TemplateBinding Padding}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <ContentPresenter Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                              VerticalAlignment="Center" />
+                            <PathIcon Name="chevron" Width="10" Height="10" Foreground="{TemplateBinding Foreground}"
+                                      VerticalAlignment="Center" Data="M1,4 L8,11 L15,4 L16.4,5.4 L8,13.8 L-0.4,5.4 Z" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.disclosure:checked /template/ PathIcon#chevron">
+            <Setter Property="RenderTransform" Value="rotate(180deg)" />
+        </Style>
+
+        <!-- The value in the middle of a dial: shrinks to fit inside a small arc, grows a little while the dial is held.
+             The Viewbox clips its content, so the whole Viewbox grows, not the text inside it. -->
+        <Style Selector="Viewbox.readout">
+            <!-- About the square inside the arc, a little above the middle -->
+            <Setter Property="Margin" Value="44,48,44,54" />
+            <Setter Property="RenderTransform" Value="scale(1)" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.22" Easing="CubicEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Viewbox.readout.dragging">
+            <Setter Property="RenderTransform" Value="scale(1.12)" />
+        </Style>
+
+        <!-- The value in the middle of a dial; dimmed while its switch is off -->
+        <Style Selector="TextBlock.dialValue">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TextBlock.dialValue.off">
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        </Style>
+        <Style Selector="TextBlock.dialUnit">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <!-- Band count: a segmented switch -->
+        <Style Selector="Border.segments">
+            <Setter Property="Background" Value="{DynamicResource SegmentBrush}" />
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="Padding" Value="3" />
+        </Style>
+        <Style Selector="RadioButton.segment">
+            <Setter Property="MinWidth" Value="40" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="CornerRadius" Value="11" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="RadioButton.segment:checked">
+            <Setter Property="Background" Value="{DynamicResource SegmentSelectedBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource SegmentSelectedTextBrush}" />
+        </Style>
+
+        <Style Selector="ComboBox.preset">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource SegmentBrush}" />
+            <Setter Property="Padding" Value="14,0,8,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style Selector="TextBlock.problem">
+            <Setter Property="Foreground" Value="{DynamicResource StatusProblemBrush}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style Selector="TextBlock.label">
+            <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Margin" Value="0,0,12,8" />
+        </Style>
+        <Style Selector="TextBlock.value">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="16,20,16,28" Spacing="12" MaxWidth="560">
+            <!-- Header: the app and where the sound goes -->
+            <StackPanel Margin="6,0,6,6" Spacing="2">
+                <TextBlock Text="VolumeX" FontSize="28" FontWeight="Bold" />
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <PathIcon Width="14" Height="14" Foreground="{DynamicResource MutedTextBrush}"
+                              Data="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+                    <TextBlock Classes="muted" FontSize="14" VerticalAlignment="Center" Text="{Binding OutputDeviceText}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Loudness and bass: two dials side by side -->
+            <Grid ColumnDefinitions="*,12,*">
+                <Border Classes="card">
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="title" Text="{x:Static loc:Strings.VolumeTitle}" />
+                        <!-- The scale may use the card's padding at the sides -->
+                        <Panel Height="150" MaxWidth="160" Margin="-12,0">
+                            <views:Dial Name="VolumeDial" Minimum="{Binding MinPercent}" Maximum="{Binding MaxPercent}"
+                                        Step="{Binding StepPercent}" Value="{Binding GainPercent}"
+                                        TickFrequency="{Binding StepPercent}" LabelFrequency="25"
+                                        IsActive="{Binding IsBoostEnabled}"
+                                        ActiveBrush="{DynamicResource AccentBrush}"
+                                        InactiveBrush="{DynamicResource StatusIdleBrush}"
+                                        TrackBrush="{DynamicResource TrackBrush}"
+                                        HandleFill="{DynamicResource CardBrush}"
+                                        TextBrush="{DynamicResource MutedTextBrush}"
+                                        AutomationProperties.Name="{x:Static loc:Strings.BoostLevelName}" />
+                            <Viewbox Classes="readout" Classes.dragging="{Binding #VolumeDial.IsDragging}"
+                                     StretchDirection="DownOnly" IsHitTestVisible="False">
+                                <StackPanel>
+                                    <TextBlock Classes="dialValue" Classes.off="{Binding !IsBoostEnabled}" Text="{Binding GainPercentText}" />
+                                    <TextBlock Classes="dialUnit" Text="{Binding GainDecibelsText}" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Panel>
+                        <!-- The switch tucks into the open bottom of the arc -->
+                        <ToggleButton Classes="switch" HorizontalAlignment="Center" Margin="0,-22,0,0"
+                                      IsChecked="{Binding IsBoostEnabled}" AutomationProperties.Name="{x:Static loc:Strings.BoostSwitchName}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Classes="card">
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="title" Text="{x:Static loc:Strings.BassTitle}" />
+                        <Panel Height="150" MaxWidth="160" Margin="-12,0">
+                            <views:Dial Name="BassDial" Minimum="{Binding MinBassDecibels}" Maximum="{Binding MaxBassDecibels}"
+                                        Step="{Binding BassStepDecibels}" Origin="0" Value="{Binding BassDecibels}"
+                                        TickFrequency="1" LabelFrequency="3" LabelFormat="+0;−0;0"
+                                        IsActive="{Binding IsBassEnabled}"
+                                        ActiveBrush="{DynamicResource AccentBrush}"
+                                        InactiveBrush="{DynamicResource StatusIdleBrush}"
+                                        TrackBrush="{DynamicResource TrackBrush}"
+                                        HandleFill="{DynamicResource CardBrush}"
+                                        TextBrush="{DynamicResource MutedTextBrush}"
+                                        AutomationProperties.Name="{x:Static loc:Strings.BassLevelName}" />
+                            <Viewbox Classes="readout" Classes.dragging="{Binding #BassDial.IsDragging}"
+                                     StretchDirection="DownOnly" IsHitTestVisible="False">
+                                <StackPanel>
+                                    <TextBlock Classes="dialValue" Classes.off="{Binding !IsBassEnabled}" Text="{Binding BassText}" />
+                                    <TextBlock Classes="dialUnit" Text="{x:Static loc:Strings.DecibelUnit}" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Panel>
+                        <!-- The switch tucks into the open bottom of the arc -->
+                        <ToggleButton Classes="switch" HorizontalAlignment="Center" Margin="0,-22,0,0"
+                                      IsChecked="{Binding IsBassEnabled}" AutomationProperties.Name="{x:Static loc:Strings.BassTitle}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Problems, only when there are any -->
+            <TextBlock Classes="problem" Margin="6,0" IsVisible="{Binding IsBoostProblemVisible}" Text="{Binding BoostProblemText}" />
+            <TextBlock Classes="problem" Margin="6,0" IsVisible="{Binding IsToneProblemVisible}" Text="{Binding ToneProblemText}" />
+
+            <!-- One-time warning -->
+            <Border IsVisible="{Binding IsWarningVisible}" Background="{DynamicResource NoticeBrush}"
+                    CornerRadius="20" Padding="16,12,8,12">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" FontSize="13"
+                               Text="{x:Static loc:Strings.LoudnessWarning}" />
+                    <Button Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Center" Content="{x:Static loc:Strings.LoudnessWarningAcknowledge}"
+                            Background="Transparent" Foreground="{DynamicResource AccentBrush}" FontWeight="SemiBold"
+                            Command="{Binding AcknowledgeWarningCommand}" />
+                </Grid>
+            </Border>
+
+            <!-- Equalizer -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Classes="title" Text="{x:Static loc:Strings.EqualizerTitle}" />
+                        <ToggleButton Grid.Column="1" Classes="switch" IsChecked="{Binding IsEqualizerEnabled}"
+                                      AutomationProperties.Name="{x:Static loc:Strings.EqualizerTitle}" />
+                    </Grid>
+                    <views:EqualizerGraph Height="230"
+                                          Values="{Binding EqualizerGains}"
+                                          Labels="{Binding EqualizerLabels}"
+                                          Minimum="{Binding MinBandGainDecibels}"
+                                          Maximum="{Binding MaxBandGainDecibels}"
+                                          Step="{Binding BandGainStepDecibels}"
+                                          IsActive="{Binding IsEqualizerEnabled}"
+                                          CurveBrush="{DynamicResource AccentBrush}"
+                                          FillBrush="{DynamicResource AccentFillBrush}"
+                                          InactiveBrush="{DynamicResource StatusIdleBrush}"
+                                          TrackBrush="{DynamicResource TrackBrush}"
+                                          TextBrush="{DynamicResource MutedTextBrush}"
+                                          HandleFill="{DynamicResource CardBrush}"
+                                          AutomationProperties.Name="{x:Static loc:Strings.EqualizerBandsName}" />
+                    <Grid ColumnDefinitions="*,Auto">
+                        <ComboBox Classes="preset" HorizontalAlignment="Stretch"
+                                  ItemsSource="{Binding PresetOptions}" SelectedItem="{Binding SelectedPreset}"
+                                  AutomationProperties.Name="{x:Static loc:Strings.EqualizerPresetName}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="audio:EqualizerPreset">
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Border Grid.Column="1" Classes="segments" Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Classes="segment" GroupName="bands" Content="5" IsChecked="{Binding IsFiveBands}"
+                                             AutomationProperties.Name="{x:Static loc:Strings.EqualizerFiveBands}" />
+                                <RadioButton Classes="segment" GroupName="bands" Content="7" IsChecked="{Binding IsSevenBands}"
+                                             AutomationProperties.Name="{x:Static loc:Strings.EqualizerSevenBands}" />
+                                <RadioButton Classes="segment" GroupName="bands" Content="10" IsChecked="{Binding IsTenBands}"
+                                             AutomationProperties.Name="{x:Static loc:Strings.EqualizerTenBands}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Diagnostics, visually secondary -->
+            <ToggleButton Name="DiagnosticsToggle" Classes="disclosure" Content="{x:Static loc:Strings.DiagnosticsTitle}" />
+            <Border Classes="card" IsVisible="{Binding #DiagnosticsToggle.IsChecked}" Padding="18,16,18,8">
+                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                    <TextBlock Grid.Row="0" Classes="label" Text="{x:Static loc:Strings.DiagnosticsOutput}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Classes="value" Text="{Binding OutputRouteText}" />
+                    <TextBlock Grid.Row="1" Classes="label" Text="{x:Static loc:Strings.DiagnosticsVolume}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Classes="value" Text="{Binding MediaVolumeText}" />
+                    <TextBlock Grid.Row="2" Classes="label" Text="{x:Static loc:Strings.DiagnosticsEffect}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Classes="value" Text="{Binding EffectText}" />
+                    <TextBlock Grid.Row="3" Classes="label" Text="{x:Static loc:Strings.DiagnosticsGain}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Classes="value" Text="{Binding GainDetailsText}" />
+                    <TextBlock Grid.Row="4" Classes="label" Text="{x:Static loc:Strings.DiagnosticsSystemEffects}" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" Classes="value" Text="{Binding AvailableEffectsText}" />
+                    <TextBlock Grid.Row="5" Classes="label" Text="{x:Static loc:Strings.DiagnosticsSystem}" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Classes="value" Text="{Binding SystemVersionText}" />
+                    <TextBlock Grid.Row="6" Classes="label" Text="{x:Static loc:Strings.DiagnosticsDevice}" />
+                    <TextBlock Grid.Row="6" Grid.Column="1" Classes="value" Text="{Binding DeviceModelText}" />
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

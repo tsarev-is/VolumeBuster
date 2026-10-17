@@ -1,0 +1,55 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VolumeX.App"
+             RequestedThemeVariant="Default">
+
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <!-- Explicit accent so Android 12+ wallpaper colours never repaint the app; RegionColor matches the launch window. -->
+                <ColorPaletteResources x:Key="Light" Accent="#A86200" RegionColor="#E3E6E9" />
+                <ColorPaletteResources x:Key="Dark" Accent="#FFB020" RegionColor="#0E1012" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+    </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- A mixing desk: aluminium panels by day, graphite by night, amber LEDs for whatever is switched on. -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="CardBrush" Color="#F8F9FA" />
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#D3D8DE" />
+                    <SolidColorBrush x:Key="TrackBrush" Color="#DDE1E6" />
+                    <SolidColorBrush x:Key="MutedTextBrush" Color="#59626C" />
+                    <SolidColorBrush x:Key="StatusIdleBrush" Color="#A4ACB5" />
+                    <SolidColorBrush x:Key="StatusProblemBrush" Color="#C62828" />
+                    <SolidColorBrush x:Key="NoticeBrush" Color="#FBEFD5" />
+                    <SolidColorBrush x:Key="AccentBrush" Color="#A86200" />
+                    <SolidColorBrush x:Key="AccentFillBrush" Color="#26E89A00" />
+                    <SolidColorBrush x:Key="SegmentBrush" Color="#ECEEF1" />
+                    <SolidColorBrush x:Key="SegmentSelectedBrush" Color="#A86200" />
+                    <SolidColorBrush x:Key="SegmentSelectedTextBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="SwitchTrackOffBrush" Color="#ECEEF1" />
+                    <SolidColorBrush x:Key="SwitchOutlineBrush" Color="#7A838D" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="CardBrush" Color="#191C20" />
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#262A30" />
+                    <SolidColorBrush x:Key="TrackBrush" Color="#2A2F35" />
+                    <SolidColorBrush x:Key="MutedTextBrush" Color="#8D96A0" />
+                    <SolidColorBrush x:Key="StatusIdleBrush" Color="#4A525B" />
+                    <SolidColorBrush x:Key="StatusProblemBrush" Color="#FF6B5E" />
+                    <SolidColorBrush x:Key="NoticeBrush" Color="#2A2314" />
+                    <SolidColorBrush x:Key="AccentBrush" Color="#FFB020" />
+                    <SolidColorBrush x:Key="AccentFillBrush" Color="#24FFB020" />
+                    <SolidColorBrush x:Key="SegmentBrush" Color="#22262B" />
+                    <SolidColorBrush x:Key="SegmentSelectedBrush" Color="#FFB020" />
+                    <SolidColorBrush x:Key="SegmentSelectedTextBrush" Color="#231800" />
+                    <SolidColorBrush x:Key="SwitchTrackOffBrush" Color="#22262B" />
+                    <SolidColorBrush x:Key="SwitchOutlineBrush" Color="#6F7882" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
