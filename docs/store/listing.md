@@ -2,7 +2,7 @@
 
 ## Title
 
-VolumeBuster: Volume Booster
+VolumeX: Volume Booster
 
 ## Short description
 
@@ -10,7 +10,7 @@ Make every app louder than 100%: volume boost, bass and equalizer. No root.
 
 ## Full description
 
-VolumeBuster raises the sound of all apps above the system maximum: music, video, podcasts, games and browsers.
+VolumeX raises the sound of all apps above the system maximum: music, video, podcasts, games and browsers.
 No root and no special setup: turn the boost on and play whatever you like.
 
 VOLUME BOOST
@@ -40,9 +40,12 @@ Please note
 • Loud sound can damage your hearing and the speaker. Start with a small boost.
 • Requires Android 12 or newer. Some manufacturers do not allow effects on the system-wide sound; the app tells you
   if this is the case.
-• Another equalizer or booster app that controls the system sound can block VolumeBuster. Turn its effects off.
+• Another equalizer or booster app that controls the system sound can block VolumeX. Turn its effects off.
 
 ## Release notes:
+
+### 1.0.1
+Minor internal changes: the project is renamed to VolumeX.
 
 ### 1.0.0
 First release: volume boost up to 150%, bass, 5/7/10-band equalizer with presets, Quick Settings tile.

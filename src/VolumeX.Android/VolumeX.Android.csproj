@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0-android</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <!-- Android 12+: tested target range is Android 12–16. -->
+        <SupportedOSPlatformVersion>31</SupportedOSPlatformVersion>
+        <ApplicationId>com.volumex</ApplicationId>
+        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+        <AndroidManifest>AndroidManifest.xml</AndroidManifest>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <!-- arm64 for the phone, x64 for the emulator. -->
+        <RuntimeIdentifiers>android-arm64;android-x64</RuntimeIdentifiers>
+        <AndroidPackageFormats>apk</AndroidPackageFormats>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <RuntimeIdentifiers>android-arm64</RuntimeIdentifiers>
+        <AndroidPackageFormats>aab;apk</AndroidPackageFormats>
+        <VolumeXKeyStore>$(HOME)/.android/volumebuster-upload.keystore</VolumeXKeyStore>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' And Exists('$(VolumeXKeyStore)')">
+        <AndroidKeyStore>true</AndroidKeyStore>
+        <AndroidSigningKeyStore>$(VolumeXKeyStore)</AndroidSigningKeyStore>
+        <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
+        <AndroidSigningStorePass>file:$(HOME)/.android/volumebuster-upload.pass</AndroidSigningStorePass>
+        <AndroidSigningKeyPass>file:$(HOME)/.android/volumebuster-upload.pass</AndroidSigningKeyPass>
+    </PropertyGroup>
+
+    <Target Name="WarnDebugSignedRelease" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release' And '$(AndroidKeyStore)' != 'true'">
+        <Warning Text="Release keystore $(VolumeXKeyStore) not found: the package is signed with the debug key and is not fit for publishing." />
+    </Target>
+
+    <ItemGroup>
+        <ProjectReference Include="..\VolumeX\VolumeX.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Android" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+    </ItemGroup>
+</Project>

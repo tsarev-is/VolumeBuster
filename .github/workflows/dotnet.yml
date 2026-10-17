@@ -35,13 +35,13 @@ jobs:
           workloads: android
 
       - name: Restore
-        run: dotnet restore VolumeBuster.sln
+        run: dotnet restore VolumeX.sln
 
       - name: Build
-        run: dotnet build VolumeBuster.sln --no-restore -p:JavaSdkDirectory="$JAVA_HOME_21_X64"
+        run: dotnet build VolumeX.sln --no-restore -p:JavaSdkDirectory="$JAVA_HOME_21_X64"
 
       - name: Test
-        run: dotnet test VolumeBuster.Tests --no-build
+        run: dotnet test VolumeX.Tests --no-build
 
   tag:
     name: Tag release
@@ -71,7 +71,7 @@ jobs:
             exit 0
           fi
 
-          app_version=$(grep -oP '<ApplicationDisplayVersion>\K[^<]+' src/VolumeBuster.Android/VolumeBuster.Android.csproj || true)
+          app_version=$(grep -oP '<ApplicationDisplayVersion>\K[^<]+' src/VolumeX.Android/VolumeX.Android.csproj || true)
           if [ "$app_version" != "$version" ]; then
             echo "::error file=CHANGELOG.md::CHANGELOG.md is at $version, but ApplicationDisplayVersion is $app_version."
             exit 1
@@ -79,6 +79,6 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "$tag" -m "VolumeBuster $version"
+          git tag -a "$tag" -m "VolumeX $version"
           git push origin "$tag"
           echo "Created tag $tag."

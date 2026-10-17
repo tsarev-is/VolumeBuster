@@ -1,10 +1,10 @@
 # Privacy Policy
 
-*Effective date: October 12, 2026. Applies to VolumeBuster for Android (`app.volumebuster`).*
+*Effective date: October 12, 2026. Applies to VolumeX for Android (`com.volumex`).*
 
 [Русская версия ниже](#политика-конфиденциальности)
 
-VolumeBuster does not collect, store on a server, share or sell any personal or device data.
+VolumeX does not collect, store on a server, share or sell any personal or device data.
 
 - **No network access.** The app does not request the Internet permission, so nothing it handles can leave the device.
 - **No accounts, ads, analytics or crash reporting.** The app contains no third-party SDKs that track users.
@@ -23,17 +23,17 @@ on the device. They are not included in cloud backups and are deleted when the a
 **Children.** The app is not directed at children and collects no data from anyone.
 
 **Changes.** Any change to this policy will be published in this file in the project repository:
-<https://github.com/tsarev-is/VolumeBuster/blob/main/PRIVACY.md>
+<https://github.com/tsarev-is/VolumeX/blob/main/PRIVACY.md>
 
-**Contact.** Questions about this policy: <https://github.com/tsarev-is/VolumeBuster/issues>
+**Contact.** Questions about this policy: <https://github.com/tsarev-is/VolumeX/issues>
 
 ---
 
 # Политика конфиденциальности
 
-*Действует с 12 октября 2026 года. Относится к приложению VolumeBuster для Android (`app.volumebuster`).*
+*Действует с 12 октября 2026 года. Относится к приложению VolumeX для Android (`com.volumex`).*
 
-VolumeBuster не собирает, не хранит на серверах, не передаёт и не продаёт никакие персональные данные и данные устройства.
+VolumeX не собирает, не хранит на серверах, не передаёт и не продаёт никакие персональные данные и данные устройства.
 
 - **Нет доступа к сети.** Приложение не запрашивает разрешение на доступ в интернет, поэтому ничто не может покинуть устройство.
 - **Нет аккаунтов, рекламы, аналитики и отчётов о сбоях.** В приложении нет сторонних SDK, которые отслеживают пользователей.
@@ -52,6 +52,6 @@ VolumeBuster не собирает, не хранит на серверах, н�
 **Дети.** Приложение не предназначено для детей и ни у кого не собирает данные.
 
 **Изменения.** Изменения политики публикуются в этом файле в репозитории проекта:
-<https://github.com/tsarev-is/VolumeBuster/blob/main/PRIVACY.md>
+<https://github.com/tsarev-is/VolumeX/blob/main/PRIVACY.md>
 
-**Контакты.** Вопросы по политике: <https://github.com/tsarev-is/VolumeBuster/issues>
+**Контакты.** Вопросы по политике: <https://github.com/tsarev-is/VolumeX/issues>

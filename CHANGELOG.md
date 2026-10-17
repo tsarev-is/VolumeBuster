@@ -3,6 +3,13 @@
 All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] — 2026-10-17
+
+### Changed
+
+- The project is renamed to VolumeX: namespaces, assemblies, solution and the logcat tag (`adb logcat -s VolumeX`).
+- New screenshots, including one with the Russian interface.
+
 ## [1.0.0] — 2026-10-12
 
 First public release.
@@ -20,4 +27,5 @@ First public release.
 - English, Russian and German interface; on Android 13+ the language can be chosen per app.
 - Light and dark theme following the system.
 
-[1.0.0]: https://github.com/tsarev-is/VolumeBuster/releases/tag/v1.0.0
+[1.0.1]: https://github.com/tsarev-is/VolumeX/releases/tag/v1.0.1
+[1.0.0]: https://github.com/tsarev-is/VolumeX/releases/tag/v1.0.0
